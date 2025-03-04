@@ -2,7 +2,7 @@ import React from 'react';
 import Homeservices from './Homeservices';
 import { ChartBar } from 'lucide-react';
 import RatingFome from './RatingFome';
-import RatingDisplay from './RatingDisplay';
+//import RatingDisplay from './RatingDisplay';
 
 const Home = () => {
   return (

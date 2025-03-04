@@ -1,91 +1,89 @@
 import React, { useState, useEffect } from 'react';
-import '../CSS/RatingFome.css';
-import { getRating } from '../action/rFPostActions';
+import '../CSS/RatingFome.css';  // Assuming your CSS is correct
+import { getRating } from '../action/rFPostActions';  // Import getRating function
 
 const RatingDisplay = () => {
-  const [ratings, setRatings] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [ratings, setRatings] = useState(null);  // Store ratings data
+  const [loading, setLoading] = useState(true); // Track loading state
+  const [error, setError] = useState(null);     // Track error state
 
   useEffect(() => {
-    // Function to fetch data
+    // Fetch data when the component mounts
     const fetchRatings = async () => {
-      setLoading(true);
+      setLoading(true); // Set loading to true when fetching
       try {
-        const result = await getRating();
+        const result = await getRating(); // Call the getRating function
         
         if (result.success) {
-          // Check the structure of the response data
-          console.log('API Response:', result);
-          
-          // Make sure we're setting an array to the ratings state
-          if (Array.isArray(result.data)) {
-            setRatings(result.data);
-          } else if (result.data && Array.isArray(result.data.ratings)) {
-            // If the data is nested inside a 'ratings' property
-            setRatings(result.data.ratings);
-          } else {
-            // If we received data but it's not in the expected format
-            console.error('Unexpected data format:', result.data);
-            setError('Received data is not in the expected format');
-            setRatings([]);
-          }
+          console.log('API Response:', result); // Log response for debugging
+
+          // Directly set the data, even if it's not an array
+          setRatings(result.data); // Use result.data directly here
         } else {
           setError('Failed to fetch ratings');
-          setRatings([]);
+          setRatings(null);  // Clear ratings data
         }
       } catch (err) {
-        console.error('Error in fetchRatings:', err);
+        console.error('Error fetching ratings:', err);
         setError('Error fetching ratings: ' + err.message);
-        setRatings([]);
+        setRatings(null);  // Clear ratings data
       } finally {
-        setLoading(false);
+        setLoading(false); // Set loading to false when done
       }
     };
-    
-    // Call the function
-    fetchRatings();
-  }, []);
 
+    // Call the function to fetch ratings
+    fetchRatings();
+  }, []); // Empty dependency array ensures this runs only once after the component mounts
+
+  // Show loading message while fetching data
   if (loading) {
     return <div>Loading ratings...</div>;
   }
 
+  // Show error message if something goes wrong
   if (error) {
     return <div>Error: {error}</div>;
   }
 
-  // Debug: Check what we actually have in ratings
+  // Debugging: Check the structure of the ratings state
   console.log('Ratings state:', ratings);
 
   return (
     <div className="ratings-container">
       <h2>Customer Ratings</h2>
       <div className="ratings-grid">
-        {Array.isArray(ratings) && ratings.length > 0 ? (
-          // FIXED: This block executes when we HAVE ratings
-          ratings.map((item) => (
-            <div key={item._id || `rating-${Math.random()}`} className="rating-card">
-              <h3>{item.clientName}</h3>
-              <div className="rating-stars">
-                {[...Array(5)].map((_, i) => (
-                  <span 
-                    key={i} 
-                    className={i < parseInt(item.rating) ? "star filled" : "star"}
-                  >
-                    ★
-                  </span>
-                ))}
+        {ratings ? (
+          // If we have ratings, display each one in a separate block
+          Array.isArray(ratings) ? (
+            ratings.map((item, index) => (
+              <div key={index} className="rating-card">
+                <h3>{item.clientName}</h3>
+                <div className="rating-stars">
+                  {[...Array(5)].map((_, i) => (
+                    <span 
+                      key={i} 
+                      className={i < parseInt(item.rating) ? "star filled" : "star"}
+                    >
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <p className="service-name">Service: {item.serviceName}</p>
+                {item.review && <p className="review-text">Review: {item.review}</p>}
+                <p className="date-text">
+                  {item.createdAt ? new Date(item.createdAt).toLocaleDateString() : 'No date available'}
+                </p>
               </div>
-              <p className="service-name">Service: {item.serviceName}</p>
-              {item.review && <p className="review-text">{item.review}</p>}
-              <p className="date-text">
-                {item.createdAt ? new Date(item.createdAt).toLocaleDateString() : 'No date available'}
-              </p>
+            ))
+          ) : (
+            // If ratings is not an array (handle the case where it's an object or other type)
+            <div className="rating-card">
+              <p>No ratings available in expected format.</p> {/* Provide a fallback message */}
             </div>
-          ))
+          )
         ) : (
-          // FIXED: This block executes when we DON'T have ratings
+          // If there's no data
           <p>No ratings found</p>
         )}
       </div>

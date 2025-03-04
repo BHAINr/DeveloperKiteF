@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../CSS/Navbar.css';
+import logo from '../images/DevSPR.svg'
 
 const Navbar = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -14,7 +15,6 @@ const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg sticky-top custom-navbar">
             <Link to="/" className="navbar-brand d-flex align-items-center">
-                <img src='../images/DevSPR.jpg' alt="Logo" className="brand-logo" />
                 <h1 className="m-0 text-authentic">Developers Kite</h1>
             </Link>
             <button className="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -58,7 +58,7 @@ const Navbar = () => {
                         </form>
                     </li>
                 </ul>
-                <Link to="https://www.instagram.com/bachpan_ladnun/?igsh=MXdlcW85ejZ2aTk5dQ%3D%3D" className="btn btn-custom-primary ms-3 d-none d-lg-block">
+                <Link to="/Contact" className="btn btn-custom-primary ms-3 d-none d-lg-block">
                     Join Us<i className="fa fa-arrow-right ms-2"></i>
                 </Link>
             </div>

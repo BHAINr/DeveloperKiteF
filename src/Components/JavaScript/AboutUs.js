@@ -3,10 +3,10 @@ import { ChevronRight, Users } from 'lucide-react'
 import "../CSS/About.css"
 
 const stats = [
-  { value: '5000+', label: 'Active Users' },
-  { value: '1000+', label: 'Projects Delivered' },
+  { value: '25+', label: 'Active Users' },
+  { value: '5+', label: 'Projects Delivered' },
   { value: '98%', label: 'Client Satisfaction' },
-  { value: '50+', label: 'Countries' }
+  { value: '5+', label: 'States' }
 ]
 
 const values = [
@@ -26,19 +26,20 @@ const values = [
 
 const team = [
   {
-    name: 'Sarah Chen',
+    name: 'Rahul Agarwal',
     role: 'Founder & CEO',
-    bio: 'Former Google engineer with 10+ years of developer tools experience.'
-  },
+    bio: 'Former engineer with 3+ years of developer tools experience. Passionate about cyber security, cloud technologies, network security, and DevOps. Skilled in building secure, scalable, and efficient solutions.'
+  }
+  ,
   {
-    name: 'Michael Rodriguez',
+    name: 'Naved Khan',
     role: 'Lead Developer',
     bio: 'Full-stack expert specializing in developer productivity tools.'
   },
   {
-    name: 'Alex Kim',
-    role: 'Product Manager',
-    bio: 'Passionate about creating intuitive developer experiences.'
+    name: 'Rahul Kumar',
+    role: 'Chief Visionary Officer',
+    bio: 'A passionate leader focused on empowering teams and creating intuitive developer experiences. Rahul guides the strategic direction and fosters an environment of innovation and collaboration.'
   }
 ]
 
@@ -49,10 +50,11 @@ const AboutUs = () => {
         <div className="hero-content">
           <h1>Elevating Developer Experience</h1>
           <p>We are passionate about creating tools that help developers soar to new heights</p>
-          <button className="button button-primary">
-            Get Started
-            <ChevronRight className="icon" />
-          </button>
+          <a href='/contact'>
+            <button className="button button-primary">
+              Get Started
+              <ChevronRight className="icon" />
+            </button></a>
         </div>
       </section>
 
@@ -101,7 +103,9 @@ const AboutUs = () => {
         <div className="cta-container">
           <h2>Ready to Get Started?</h2>
           <p>Join thousands of developers who are already using Developer Kite to improve their development workflow.</p>
-          <button className="button button-primary">Start Free Trial</button>
+          <a href="/contact">
+            <button class="button button-primary">Start Free Trial</button>
+          </a>
         </div>
       </section>
     </div>

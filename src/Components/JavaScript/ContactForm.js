@@ -26,8 +26,8 @@ const ContactForm = () => {
     // Send email using EmailJS
     try {
       await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS Service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS Template ID
+        'service_fj0i8mg', // Replace with your EmailJS Service ID
+        'template_nkp9an9', // Replace with your EmailJS Template ID
         {
           name: formData.name,
           email: formData.email,
@@ -37,7 +37,7 @@ const ContactForm = () => {
           message: formData.message,
           newsletter: formData.newsletter ? 'Yes' : 'No'
         },
-        'YOUR_PUBLIC_KEY' // Replace with your EmailJS Public Key
+        'deevNwLcjx2B8vJd1' // Replace with your EmailJS Public Key
       );
       setLoading(false);
       setActiveSection('success');
@@ -79,7 +79,7 @@ const ContactForm = () => {
               <MapPin className="text-primary" size={24} />
             </div>
             <h3 className="h5 mb-2">Our Location</h3>
-            <p className="text-muted mb-0">123 Business Avenue, Suite 100, Tech City, TC 12345</p>
+            <p className="text-muted mb-0">Capital High Street, Jagatpura, Jaipur, 302022</p>
           </div>
         </div>
       </div>
@@ -103,7 +103,7 @@ const ContactForm = () => {
               <Globe className="text-primary" size={24} />
             </div>
             <h3 className="h5 mb-2">Global Support</h3>
-            <p className="text-muted mb-0">24/7 Online Support<br />support@example.com</p>
+            <p className="text-muted mb-0">24/7 Online Support<br />support@developerkites.in</p>
           </div>
         </div>
       </div>
