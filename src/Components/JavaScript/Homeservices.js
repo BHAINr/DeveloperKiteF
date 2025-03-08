@@ -98,7 +98,7 @@ function Homeservices() {
                     <div className="contact-item">
                         <Mail size={32} className="contact-icon" />
                         <h3>Email</h3>
-                        <p>support@developerkites.com</p>
+                        <p>contact@developerkites.in</p>
                     </div>
                     <div className="contact-item">
                         <Phone size={32} className="contact-icon" />
